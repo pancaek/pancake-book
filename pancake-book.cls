@@ -48,13 +48,21 @@
 
 \providecommand{\marginaliasize}{\footnotesize}
 \DeclareCaptionFont{marginaliasize}{\marginaliasize}
+
 \let\oldmarginpar\marginpar
-\def\marginpar#1{\oldmarginpar{\marginaliasize\smartragged #1}}
+\renewcommand{\marginpar}[2][]{%
+  \ifx#1\empty\empty
+    \oldmarginpar{\smartragged\marginaliasize #2}%
+  \else
+    \oldmarginpar[\raggedleft\marginaliasize #1]{\raggedright\marginaliasize #2}%
+  \fi
+}
 
 \DeclareCaptionJustification{smartragged}{\smartragged}
 
 \DeclareCaptionStyle{marginfigure}{font=marginaliasize,justification=smartragged}
 \DeclareCaptionStyle{margintable}{font=marginaliasize,justification=smartragged}
+\DeclareCaptionStyle{sidecaption}{font=marginaliasize,justification=smartragged}
 
 %* Assorted random bits
 \makeatletter
