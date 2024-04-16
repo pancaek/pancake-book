@@ -1,10 +1,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{pancake-book}[2021/09/09 Annotated book class]
 \DeclareOption{sidefootnotes}{
-%* Footnotes to sidenotes
-\renewcommand{\footnote}[2][]{\sidenote[#1]{#2}}
-\renewcommand{\footnotetext}[2][]{\sidenotetext[#1]{#2}}
-\renewcommand{\footnotemark}[1][]{\sidenotemark[#1]}
+    %* Footnotes to sidenotes
+    \renewcommand{\footnote}[2][]{\sidenote[#1]{#2}}
+    \renewcommand{\footnotetext}[2][]{\sidenotetext[#1]{#2}}
+    \renewcommand{\footnotemark}[1][]{\sidenotemark[#1]}
 }
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
