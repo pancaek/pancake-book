@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pancake-ling}[2021/09/10 Pancake's linguistics bundle]
+
+\RequirePackage[nogroupskip,nonumberlist]{glossaries}
+\RequirePackage{glossary-mcols}
+\RequirePackage[nostandards,mcolblock]{baabbrevs}
+\RequirePackage[nostdabbrevs, 2level, columns, contours]{baarux}
+\RequirePackage{tikzvowel, phonrule}
+
+\RequirePackage{afterpackage}
+\AfterPackage{cleveref}{
+  \crefname{exesi}{example}{examples}
+  \creflabelformat{exesi}{#2(#1)#3}
+  \crefname{exesii}{example}{examples}
+  \creflabelformat{exesii}{#2(#1)#3}
+  \crefname{exesiii}{example}{examples}
+  \creflabelformat{exesiii}{#2(#1)#3}
+  \crefname{exesiv}{example}{examples}
+  \creflabelformat{exesiv}{#2(#1)#3}
+  \crefname{fnexesi}{example}{examples}
+  \creflabelformat{fnexesi}{#2(#1)#3}
+  \newcommand{\crefrangeconjunction}{ through }
+}
+
+\newcommand{\native}[1]{\textbf{#1}}
+\newcommand{\rom}[1]{\textit{#1}}
+\newcommand{\ifprinted}[2]{\setbox0=\hbox{#1}\ifdim\wd0=0pt\else#2\fi}
+\newcommand{\trans}[1]{\ifprinted{#1}{`#1'}}
+
+\newcommand{\phontext}[1]{[#1]}
+\newcommand{\phomtext}[1]{/#1/}
+\newcommand{\morphtext}[1]{⫽#1⫽}
+\newcommand{\orthotext}[1]{⟨#1⟩}
+
+\let\origphonc\phonc
+\def\phonc{\setlength{\tabcolsep}{3pt}\origphonc}
+\let\origphon\phon
+\def\phon{\setlength{\tabcolsep}{3pt}\origphon}
+\AfterPackage{parskip}{
+\addbaaruhook{everyexesi}{\setlength{\topsep}{0pt}}
+\let\origendcolumns\endcolumns
+\def\endcolumns{\origendcolumns\vspace{-\baaruuse{colspacing}}}
+\let\origcolumns\columns
+\def\columns{\vspace{-\baaruuse{colspacing}}\origcolumns}
+}
+
+%* Document specific spacing
+\baaruset{junctureoutersep=0.3ex, junctureinnersep=.4ex}
+
+%* Set up new line types/junctures
+\newbaarucmd{<}{\baaruscan⟨}
+\newbaarucmd{>}{\baaruscan⟩}
+\newbaarucmd*{^}{\baarujuncture\textasciitilde}
+\setbaaruabbrevseps{.:-()⟨⟩}
+
+\newbaarulinetype{script}{romanization}{}
+\newbaarulinetype{insert}{tikz}{\tikz[baaru]}
+\tikzset{baaru/.style={baseline=0.3ex}}
+\newbaarulinetype{tr}{lit}{\textit{Lit: }}
