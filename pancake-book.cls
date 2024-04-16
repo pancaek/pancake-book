@@ -49,12 +49,12 @@
 \providecommand{\marginaliasize}{\footnotesize}
 \DeclareCaptionFont{marginaliasize}{\marginaliasize}
 
-\let\oldmarginpar\marginpar
+\let\@oldmarginpar\marginpar
 \renewcommand{\marginpar}[2][]{%
   \ifx#1\empty\empty % when #1 is empty, we are really looking to see that \empty = \empty
-    \oldmarginpar{\smartragged\marginaliasize #2}%
+    \@oldmarginpar{\smartragged\marginaliasize #2}%
   \else
-    \oldmarginpar[\raggedleft\marginaliasize #1]{\raggedright\marginaliasize #2}%
+    \@oldmarginpar[\raggedleft\marginaliasize #1]{\raggedright\marginaliasize #2}%
   \fi
 }
 
