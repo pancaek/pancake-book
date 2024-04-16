@@ -1,5 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{pancake-book}[2021/09/09 Annotated book class]
+\DeclareOption{sidefootnotes}{
+%* Footnotes to sidenotes
+\renewcommand{\footnote}[2][]{\sidenote[#1]{#2}}
+\renewcommand{\footnotetext}[2][]{\sidenotetext[#1]{#2}}
+\renewcommand{\footnotemark}[1][]{\sidenotemark[#1]}
+}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
 \LoadClass{book}
@@ -31,7 +37,7 @@
   \fancyfoot[LE,RO]{\thepage}
 }
 
-%* Side notes
+%* Marginalia
 \RequirePackage{sidenotes}
 \RequirePackage{marginfix}
 
@@ -50,6 +56,7 @@
 \DeclareCaptionStyle{marginfigure}{font=marginaliasize,justification=smartragged}
 \DeclareCaptionStyle{margintable}{font=marginaliasize,justification=smartragged}
 
+%* Assorted random bits
 \makeatletter
 \newcommand{\ifdraft}[2][]{\ifdim\overfullrule>\z@
   \expandafter#2\else\expandafter#1\fi}
@@ -63,9 +70,9 @@
 \RequirePackage{soul}
 \RequirePackage{xcolor}
 
+%* List adjustments
 \newlength{\listsep}
 \setlength{\listsep}{.5em}
-
 \setlist{topsep=0em, itemsep=\dimexpr\listsep - \parskip\relax}
 \setlist[itemize]{label=---}
 
