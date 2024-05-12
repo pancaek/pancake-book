@@ -1,11 +1,13 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{pancake-book}[2021/09/09 Annotated book class]
+
+%* Footnotes to sidenotes
 \DeclareOption{sidefootnotes}{
-    %* Footnotes to sidenotes
     \renewcommand{\footnote}[2][]{\sidenote[#1]{#2}}
     \renewcommand{\footnotetext}[2][]{\sidenotetext[#1]{#2}}
     \renewcommand{\footnotemark}[1][]{\sidenotemark[#1]}
 }
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
 \LoadClass{book}
@@ -24,6 +26,7 @@
 \pagestyle{fancy}
 
 \fancyhf{}
+\fancyheadoffset{0cm}
 \renewcommand{\headrulewidth}{.4pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot[LE,RO]{\thepage}
@@ -94,4 +97,3 @@
   style=apa,
   sorting=ynt
 ]{biblatex}
-\RequirePackage[outer=6cm, inner=3cm]{geometry}
