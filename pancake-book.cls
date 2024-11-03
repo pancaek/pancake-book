@@ -3,49 +3,53 @@
 
 %* Footnotes to sidenotes
 \DeclareOption{sidefootnotes}{
-    \renewcommand{\footnote}[2][]{\sidenote[#1]{#2}}
-    \renewcommand{\footnotetext}[2][]{\sidenotetext[#1]{#2}}
-    \renewcommand{\footnotemark}[1][]{\sidenotemark[#1]}
+  \renewcommand{\footnote}[2][]{\sidenote[#1]{#2}}
+  \renewcommand{\footnotetext}[2][]{\sidenotetext[#1]{#2}}
+  \renewcommand{\footnotemark}[1][]{\sidenotemark[#1]}
+}
+\DeclareOption{letterpaper}{
+  \PassOptionsToPackage{letterpaper,left=1in,top=1in,headsep=2\baselineskip,textwidth=26pc,marginparsep=2pc,marginparwidth=12pc,textheight=44\baselineskip,headheight=1.2\baselineskip}{geometry}
+}
+
+\DeclareOption{a4paper}{
+  \PassOptionsToPackage{a4paper,left=24.8mm,top=27.4mm,headsep=2\baselineskip,textwidth=107mm,marginparsep=8.2mm,marginparwidth=49.4mm,textheight=49\baselineskip,headheight=1.2\baselineskip}{geometry}
 }
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
 \LoadClass{book}
+\RequirePackage{geometry}
 
-%* Headings
-% \RequirePackage{titlesec}
-% \titleformat{\chapter}[hang]{\normalfont\Huge}{\chaptertitlename\ \thechapter\hspace{.5em}\vrule width .7pt}{.5em}{}
-% \titleformat{\section}[hang]{\normalfont\Large}{\thesection}{.5em}{}
-% \titleformat{\subsection}[hang]{\normalfont\large}{\thesubsection}{.5em}{}
-% \titleformat{\subsubsection}[hang]{\normalfont\normalsize}{\thesubsubsection}{.5em}{}
 
 %* Header/footer
 \RequirePackage{emptypage}
 
 \RequirePackage{fancyhdr}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \pagestyle{fancy}
 
 \fancyhf{}
 \fancyheadoffset{0cm}
 \renewcommand{\headrulewidth}{.4pt}
 \renewcommand{\footrulewidth}{0pt}
-\fancyfoot[LE,RO]{\thepage}
-\fancyhead[LE]{\nouppercase{\textsc{\leftmark}}}
-\fancyhead[RO]{\nouppercase{\rightmark}}
+
+
+\fancyhead[LE, RO]{\chaptername{} \thechapter}
+\fancyhead[RE, LO]{\nouppercase{\leftmark}}
+\fancyfoot[LE, RO]{\thepage}
+
 
 \fancypagestyle{plain}{
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
-  \fancyfoot[LE,RO]{\thepage}
+  \fancyfoot[LE, RO]{\thepage}
 }
 
 %* Marginalia
 \RequirePackage{sidenotes}
 \RequirePackage{marginfix}
-
-\setlength{\marginparsep}{2em}
-\setlength{\marginparpush}{1em}
 
 \newcommand{\smartragged}{\checkoddpage \ifoddpage\raggedright \else \raggedleft\fi}
 
@@ -70,7 +74,7 @@
 %* Assorted random bits
 \makeatletter
 \newcommand{\ifdraft}[2][]{\ifdim\overfullrule>\z@
-  \expandafter#2\else\expandafter#1\fi}
+    \expandafter#2\else\expandafter#1\fi}
 \makeatother
 \newcommand{\notetoself}[1]{\ifdraft{\sidenote{\color{gray}#1}}}
 
