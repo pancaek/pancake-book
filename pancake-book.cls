@@ -8,27 +8,65 @@
 	\renewcommand{\footnotemark}[1][]{\sidenotemark[#1]}
 }
 \DeclareOption{letterpaper}{
-	\PassOptionsToPackage{letterpaper,left=1in,top=1in,headsep=2\baselineskip,textwidth=26pc,marginparsep=2pc,marginparwidth=12pc,textheight=44\baselineskip,headheight=1.2\baselineskip}{geometry}
+	\PassOptionsToPackage{
+		letterpaper,
+		left=1in,
+		top=1in,
+		headsep=2\baselineskip,
+		textwidth=26pc,
+		marginparsep=2pc,
+		marginparwidth=12pc,
+		textheight=44\baselineskip,
+		headheight=1.2\baselineskip
+	}{geometry}
 }
 
 \DeclareOption{a4paper}{
-	\PassOptionsToPackage{a4paper,left=24.8mm,top=27.4mm,headsep=2\baselineskip,textwidth=107mm,marginparsep=8.2mm,marginparwidth=49.4mm,textheight=49\baselineskip,headheight=1.2\baselineskip}{geometry}
+	\PassOptionsToPackage{
+		a4paper,
+		left=24.8mm,
+		top=27.4mm,
+		headsep=2\baselineskip,
+		textwidth=107mm,
+		marginparsep=8.2mm,
+		marginparwidth=49.4mm,
+		textheight=49\baselineskip,
+		headheight=1.2\baselineskip
+	}{geometry}
 }
 
 \DeclareOption{b5paper}{
-	\PassOptionsToPackage{b5paper,left=14.66mm,top=13.88mm,textwidth=102.66mm,marginparsep=7.33mm,marginparwidth=36.66mm,textheight=38\baselineskip,includehead}{geometry}
+	\PassOptionsToPackage{
+		b5paper,
+		left=14.66mm,
+		top=13.88mm,
+		textwidth=102.66mm,
+		marginparsep=7.33mm,
+		marginparwidth=36.66mm,
+		textheight=38\baselineskip,
+		includehead
+	}{geometry}
 }
 
 % Added by me
 \DeclareOption{legalpaper}{
-	\PassOptionsToPackage{legalpaper,left=1in,top=1in,headsep=2\baselineskip, textwidth=26pc,marginparsep=2pc,marginparwidth=12pc,textheight=56\baselineskip,headheight=1.2\baselineskip}{geometry}
+	\PassOptionsToPackage{
+		legalpaper,
+		left=1in,
+		top=1in,
+		headsep=2\baselineskip,
+		textwidth=26pc,
+		marginparsep=2pc,
+		marginparwidth=12pc,
+		textheight=56\baselineskip,
+		headheight=1.2\baselineskip
+	}{geometry}
 }
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
 \LoadClass{book}
 \RequirePackage{geometry}
-
 
 %* Header/footer
 \RequirePackage{emptypage}
