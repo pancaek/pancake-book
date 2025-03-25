@@ -98,18 +98,16 @@
 \RequirePackage{sidenotes}
 \RequirePackage{marginfix}
 
-\newcommand{\smartragged}{\checkoddpage \ifoddpage\raggedright \else \raggedleft\fi}
+\NewDocumentCommand{\smartragged}{}{\checkoddpage \ifoddpage\raggedright \else \raggedleft\fi}
 
-\providecommand{\marginaliasize}{\footnotesize}
+\NewDocumentCommand{\marginaliasize}{}{\footnotesize}
 \DeclareCaptionFont{marginaliasize}{\marginaliasize}
 
-\let\@oldmarginpar\marginpar
-\renewcommand{\marginpar}[2][]{%
-	\ifx#1\empty\empty % when #1 is empty, we are really looking to see that \empty = \empty
-		\@oldmarginpar{\smartragged\marginaliasize #2}%
-	\else
-		\@oldmarginpar[\raggedleft\marginaliasize #1]{\raggedright\marginaliasize #2}%
-	\fi
+\NewCommandCopy\pancake@marginpar\marginpar
+\RenewDocumentCommand{\marginpar}{o m}{%
+	\IfNoValueTF{#1}%
+	{\pancake@marginpar{\smartragged\marginaliasize #2}}%
+	{\pancake@marginpar[\raggedleft\marginaliasize #1]{\raggedright\marginaliasize #2}}%
 }
 
 \DeclareCaptionJustification{smartragged}{\smartragged}
@@ -119,11 +117,7 @@
 \DeclareCaptionStyle{sidecaption}{font=marginaliasize}
 
 %* Assorted random bits
-\makeatletter
-\newcommand{\ifdraft}[2][]{\ifdim\overfullrule>\z@
-		\expandafter#2\else\expandafter#1\fi}
-\makeatother
-\newcommand{\notetoself}[1]{\ifdraft{\sidenote{\color{gray}#1}}}
+\NewDocumentCommand{\ifdraft}{m}{\ifdimgreater\overfullrule\z@{#1}\expandafter}
 
 %* Structure enhancements
 \RequirePackage{parskip}
