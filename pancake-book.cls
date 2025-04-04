@@ -143,5 +143,17 @@
 \setlist{topsep=0em, itemsep=\dimexpr\listsep - \parskip\relax}
 \setlist[itemize]{label=---}
 
-%* ASSORTED
+% COLORS
+\definecolor{pancake@coral}{HTML}{DD5745}
+\definecolor{pancake@red}{HTML}{C7453B}
+\definecolor{pancake@orange}{HTML}{DA662E}
+\definecolor{pancake@yellow}{HTML}{D99149}
+\definecolor{pancake@lime}{HTML}{60A861}
+\definecolor{pancake@green}{HTML}{2C5C39}
+\definecolor{pancake@cyan}{HTML}{2B6F94}
+\definecolor{pancake@blue}{HTML}{293E6A}
+\definecolor{pancake@pink}{HTML}{DB4E6E}
+\definecolor{pancake@purple}{HTML}{722B3D}
+
+% ASSORTED
 \NewDocumentCommand{\ifdraft}{m}{\ifdimgreater\overfullrule\z@{#1}\expandafter}
