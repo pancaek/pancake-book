@@ -66,12 +66,37 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
 \LoadClass{book}
+% Page geometry
 \RequirePackage{geometry}
 
-%* Header/footer
+% Header/footer
 \RequirePackage{emptypage}
-
 \RequirePackage{fancyhdr}
+
+% Marginalia
+\RequirePackage{sidenotes}
+\RequirePackage{marginfix}
+
+% Structure enhancements
+\RequirePackage{parskip}
+\RequirePackage{booktabs}
+\RequirePackage{enumitem}
+\RequirePackage{soul}
+\RequirePackage{xcolor}
+
+% Date
+\RequirePackage{datetime2}
+
+\RequirePackage{pancake-ling}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{cleveref}
+\RequirePackage[
+	backend=biber,
+	style=apa,
+	sorting=ynt
+]{biblatex}
+
+% PAGE HEAD/FOOT %
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \pagestyle{fancy}
@@ -80,7 +105,6 @@
 \fancyheadoffset{0cm}
 \renewcommand{\headrulewidth}{.4pt}
 \renewcommand{\footrulewidth}{0pt}
-
 
 \fancyhead[LE, RO]{\chaptername{} \thechapter}
 \fancyhead[RE, LO]{\nouppercase{\leftmark}}
@@ -94,10 +118,7 @@
 	\fancyfoot[LE, RO]{\thepage}
 }
 
-%* Marginalia
-\RequirePackage{sidenotes}
-\RequirePackage{marginfix}
-
+% MARGINALIA %
 \NewDocumentCommand{\smartragged}{}{\checkoddpage \ifoddpage\raggedright \else \raggedleft\fi}
 
 \NewDocumentCommand{\marginaliasize}{}{\footnotesize}
@@ -116,29 +137,11 @@
 \DeclareCaptionStyle{margintable}{font=marginaliasize}
 \DeclareCaptionStyle{sidecaption}{font=marginaliasize}
 
-%* Assorted random bits
-\NewDocumentCommand{\ifdraft}{m}{\ifdimgreater\overfullrule\z@{#1}\expandafter}
-
-%* Structure enhancements
-\RequirePackage{parskip}
-\RequirePackage{booktabs}
-\RequirePackage{enumitem}
-\RequirePackage{soul}
-\RequirePackage{xcolor}
-
-%* List adjustments
+% LIST ADJUSTMENTS
 \newlength{\listsep}
 \setlength{\listsep}{.5em}
 \setlist{topsep=0em, itemsep=\dimexpr\listsep - \parskip\relax}
 \setlist[itemize]{label=---}
 
-\RequirePackage{datetime2}
-
-\RequirePackage{pancake-ling}
-\RequirePackage[hidelinks]{hyperref}
-\RequirePackage{cleveref}
-\RequirePackage[
-	backend=biber,
-	style=apa,
-	sorting=ynt
-]{biblatex}
+%* ASSORTED
+\NewDocumentCommand{\ifdraft}{m}{\ifdimgreater\overfullrule\z@{#1}\expandafter}
