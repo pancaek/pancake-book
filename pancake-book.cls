@@ -155,5 +155,15 @@
 \definecolor{pancake@pink}{HTML}{DB4E6E}
 \definecolor{pancake@purple}{HTML}{722B3D}
 
+\NewDocumentCommand{\setaccent}{s m}{
+	\IfBooleanTF{#1}
+	{\colorlet{pancake@accent}{#2}}
+	{\colorlet{pancake@accent}{pancake@#2}}
+}
+
+
+\colorlet{pancake@grey}{gray}
+\colorlet{pancake@accent}{pancake@grey}
+
 % ASSORTED
 \NewDocumentCommand{\ifdraft}{m}{\ifdimgreater\overfullrule\z@{#1}\expandafter}
