@@ -87,14 +87,6 @@
 % Date
 \RequirePackage{datetime2}
 
-\RequirePackage{pancake-ling}
-\RequirePackage[hidelinks]{hyperref}
-\RequirePackage{cleveref}
-\RequirePackage[
-	backend=biber,
-	style=apa,
-	sorting=ynt
-]{biblatex}
 
 % PAGE HEAD/FOOT %
 \renewcommand{\sectionmark}[1]{\markright{#1}}
