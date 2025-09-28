@@ -34,13 +34,6 @@
 		\newcommand{\crefrangeconjunction}{ through }
 	}{}
 
-	\IfPackageLoadedTF{phonerule}{
-		\let\pancake@phonc\phonc
-		\def\phonc{\setlength{\tabcolsep}{3pt}\pancake@phonec}
-		\let\origphon\phon
-		\def\phon{\setlength{\tabcolsep}{3pt}\pancake@phonc}
-	}{}
-
 	\AfterPackage{parskip}{
 		\addbaaruhook{everyexesi}{\setlength{\topsep}{0pt}}
 		\let\origendcolumns\endcolumns
@@ -49,6 +42,14 @@
 		\def\columns{\vspace{-\baaruuse{colspacing}}\origcolumns}
 	}{}
 
+}{}
+
+
+\IfPackageLoadedTF{phonerule}{
+	\let\pancake@phonc\phonc
+	\def\phonc{\setlength{\tabcolsep}{3pt}\pancake@phonec}
+	\let\origphon\phon
+	\def\phon{\setlength{\tabcolsep}{3pt}\pancake@phonc}
 }{}
 
 \newcommand{\native}[1]{\textbf{#1}}
