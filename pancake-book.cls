@@ -87,6 +87,21 @@
 % Date
 \RequirePackage{datetime2}
 
+% Letterspacing
+\RequirePackage{accsupp}
+
+% Patch for accsupp on xelatex
+% via https://tex.stackexchange.com/questions/262492/xelatex-misplaces-actualtext-box
+\ifxetex
+	\def\ACCSUPP@bdc{%
+		\special{pdf:code \ACCSUPP@span BDC}%
+	}
+	\def\ACCSUPP@emc{%
+		\special{pdf:code EMC}%
+	}
+\fi
+
+\IfPackageLoadedTF{fontspec}{}{\RequirePackage{microtype}}
 
 % PAGE HEAD/FOOT %
 \renewcommand{\sectionmark}[1]{\markright{#1}}
@@ -159,3 +174,19 @@
 
 % ASSORTED
 \NewDocumentCommand{\ifdraft}{m}{\ifdimgreater\overfullrule\z@{#1}\expandafter}
+
+% Letterspacing
+
+% For reasons that are a mystery to me, using direct floating point math breaks stuff, so we don't do that
+% I love magic numbers :)
+% (said magic number isn't even an accurate conversion, I just can't be bothered to figure it out for real)
+
+\NewDocumentCommand{\spacedtext}{O{20} m}{
+	\BeginAccSupp{ActualText=#2}%
+	\IfPackageLoadedTF{fontspec}{%
+		\addfontfeature{LetterSpace=#1}#2}%
+	{\textls[\numexpr #1*95/10\relax]{#2}}%
+	\EndAccSupp{}
+}
+
+
