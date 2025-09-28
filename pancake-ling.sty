@@ -10,10 +10,17 @@
 	\baaruset{junctureoutersep=0.3ex, junctureinnersep=.4ex}
 
 	%* Set up new line types/junctures
-	\newbaarucmd{<}{\baaruscan⟨}
-	\newbaarucmd{>}{\baaruscan⟩}
+	% PDFLaXeX freaks out when `setbaaruxabbrevseps` contains unicode, so we fall back to standard angle brackets
 	\newbaarucmd*{^}{\baarujuncture\textasciitilde}
-	\setbaaruabbrevseps{.:-()⟨⟩}
+	\ifPDFTeX
+		\newbaarucmd{<}{\baaruscan<}
+		\newbaarucmd{>}{\baaruscan>}
+		\setbaaruabbrevseps{.:-()<>}
+	\else
+		\newbaarucmd{<}{\baaruscan⟨}
+		\newbaarucmd{>}{\baaruscan⟩}
+		\setbaaruabbrevseps{.:-()⟨⟩}
+	\fi
 
 	\newbaarulinetype{script}{romanization}{}
 	\newbaarulinetype{insert}{tikz}{\tikz[baaru]}
@@ -45,7 +52,7 @@
 }{}
 
 
-\IfPackageLoadedTF{phonerule}{
+\AfterPackage{phonerule}{
 	\let\pancake@phonc\phonc
 	\def\phonc{\setlength{\tabcolsep}{3pt}\pancake@phonec}
 	\let\origphon\phon
