@@ -101,7 +101,7 @@
 	}
 \fi
 
-\IfPackageLoadedTF{fontspec}{}{\RequirePackage{microtype}}
+\IfPackageLoadedTF{fontspec}{}{\RequirePackage{letterspace}}
 
 % PAGE HEAD/FOOT %
 \renewcommand{\sectionmark}[1]{\markright{#1}}
