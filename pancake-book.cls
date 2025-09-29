@@ -177,15 +177,15 @@
 
 % Letterspacing
 
-% For reasons that are a mystery to me, using direct floating point math breaks stuff, so we don't do that
+% For reasons that are a mystery to me, using direct floating point math breaks stuff, so don't try that
 % I love magic numbers :)
-% (said magic number isn't even an accurate conversion, I just can't be bothered to figure it out for real)
+% I think this is right finally, only open an issue about it if you've found a more correct conversion
 
 \NewDocumentCommand{\spacedtext}{O{20} m}{
 	\BeginAccSupp{ActualText=#2}%
 	\IfPackageLoadedTF{fontspec}{%
 		\addfontfeature{LetterSpace=#1}#2}%
-	{\textls[\numexpr #1*95/10\relax]{#2}}%
+	{\textls[\numexpr #1*10\relax]{#2}}%
 	\EndAccSupp{}
 }
 
