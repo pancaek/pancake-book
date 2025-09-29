@@ -7,6 +7,7 @@
 	\renewcommand{\footnotetext}[2][]{\sidenotetext[#1]{#2}}
 	\renewcommand{\footnotemark}[1][]{\sidenotemark[#1]}
 }
+
 \DeclareOption{letterpaper}{
 	\PassOptionsToPackage{
 		letterpaper,
