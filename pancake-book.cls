@@ -185,8 +185,9 @@
 \NewDocumentCommand{\spacedtext}{O{20} m}{
 	\BeginAccSupp{ActualText=#2}%
 	\IfPackageLoadedTF{fontspec}{%
-		\addfontfeature{LetterSpace=#1}#2}%
-	{\textls[\numexpr #1*10\relax]{#2}}%
+		% fix for spaces via https://tex.stackexchange.com/a/679263
+		\setlength{\spaceskip}{5\fontdimen2\font plus 5\fontdimen3\font minus \fontdimen3\font}%
+		\addfontfeature{LetterSpace=#1}#2}{\textls[\numexpr #1*10\relax]{#2}}%
 	\EndAccSupp{}
 }
 
