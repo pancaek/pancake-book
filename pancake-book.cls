@@ -187,7 +187,7 @@
 	\IfPackageLoadedTF{fontspec}{%
 		% fix for spaces via https://tex.stackexchange.com/a/679263
 		\setlength{\spaceskip}{5\fontdimen2\font plus 5\fontdimen3\font minus \fontdimen3\font}%
-		\addfontfeature{LetterSpace=#1}#2}{\textls[\numexpr #1*10\relax]{#2}}%
+		\addfontfeature{LetterSpace=\the\numexpr#1/10\relax}#2}{\textls[#1]{#2}}%
 	\EndAccSupp{}
 }
 
