@@ -185,13 +185,11 @@
 \NewDocumentCommand{\spacedtext}{O{20} m}{
 	\BeginAccSupp{ActualText=#2}%
 	\IfPackageLoadedTF{fontspec}{%
-		% fix for spaces via https://tex.stackexchange.com/a/679263
-		\setlength{\spaceskip}{5\fontdimen2\font plus 5\fontdimen3\font minus \fontdimen3\font}%
 		\addfontfeature{LetterSpace=\the\numexpr#1/10\relax}#2}{\textls[#1]{#2}}%
 	\EndAccSupp{}
 }
 
-\newcommand{\smallcaps}[1]{\scshape\spacedtext[50]{#1}}
+\newcommand{\smallcaps}[1]{{\scshape\spacedtext[50]{#1}}}
 \newcommand{\allcaps}[1]{\MakeUppercase{\scshape\spacedtext[200]{#1}}}
 % fullwidth
 \RequirePackage{changepage}
