@@ -191,13 +191,10 @@
 	\EndAccSupp{}
 }
 
-
+\newcommand{\smallcaps}[1]{\scshape\spacedtext[50]{#1}}
+\newcommand{\allcaps}[1]{\MakeUppercase{\scshape\spacedtext[200]{#1}}}
 % fullwidth
 \RequirePackage{changepage}
-
-\newlength{\pancake@fullwidthadj}
-\setlength{\pancake@fullwidthadj}{\marginparwidth}
-\addtolength{\pancake@fullwidthadj}{\marginparsep}
 
 % Basically, we subtract all space taken up by margin notes
 % I have no idea why this is negative but whatever
