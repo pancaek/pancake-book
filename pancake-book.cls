@@ -202,5 +202,4 @@
 % Basically, we subtract all space taken up by margin notes
 % I have no idea why this is negative but whatever
 % we need `changepage` so this will work mid-page
-\NewDocumentEnvironment{fullwidth}{}%
-{\begin{adjustwidth*}{}{-\pancake@fullwidthadj}}{\end{adjustwidth*}}
+\NewDocumentEnvironment{fullwidth}{}{\begin{adjustwidth*}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}{\end{adjustwidth*}}
