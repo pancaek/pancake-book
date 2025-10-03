@@ -193,4 +193,15 @@
 
 
 % fullwidth
-% TODO: Use adjustbox for this
+\RequirePackage{changepage}
+
+\newlength{\pancake@fullwidthadj}
+\setlength{\pancake@fullwidth}{\marginparwidth}
+\addtolength{\pancake@fullwidth}{\marginparsep}
+
+% Basically, we subtract all space taken up by margin notes
+% I have no idea why this is negative but whatever
+% we need `changepage` so this will work mid-page
+\NewDocumentEnvironment{fullwidth}{}%
+{\begin{adjustwidth*}{}{-\pancake@fullwidth}}%
+		{\end{adjustwidth*}}
