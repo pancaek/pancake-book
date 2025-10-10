@@ -108,6 +108,9 @@
 
 \IfPackageLoadedTF{fontspec}{}{\RequirePackage{letterspace}}
 
+% FULLWIDTH
+\RequirePackage{changepage}
+
 % PAGE HEAD/FOOT %
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
@@ -177,14 +180,9 @@
 \colorlet{pancake@grey}{gray}
 \colorlet{pancake@accent}{pancake@grey}
 
-% ASSORTED
-\NewDocumentCommand{\ifdraft}{m}{\ifdimgreater\overfullrule\z@{#1}\expandafter}
-
-% Letterspacing
+% LETTERSPACING
 
 % For reasons that are a mystery to me, using direct floating point math breaks stuff, so don't try that
-% I love magic numbers :)
-% I think this is right finally, only open an issue about it if you've found a more correct conversion
 
 \NewDocumentCommand{\spacedtext}{O{20} m}{
 	\BeginAccSupp{ActualText=#2}%
@@ -195,11 +193,10 @@
 
 \newcommand{\smallcaps}[1]{{\scshape\spacedtext[50]{#1}}}
 \newcommand{\allcaps}[1]{\MakeUppercase{\scshape\spacedtext[200]{#1}}}
-% fullwidth
-\RequirePackage{changepage}
+
+% FULLWIDTH %
 
 % Basically, we subtract all space taken up by margin notes
-% I have no idea why this is negative but whatever
 % we need `changepage` so this will work mid-page
 \NewDocumentEnvironment{fullwidth}{}{\begin{adjustwidth*}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}{\end{adjustwidth*}}
 
@@ -208,6 +205,11 @@
 	\renewcommand{\marginpar}[2][]{\footnote{#2}}
 	\renewcommand{\sidenote}[2][]{\footnote[#1]{#2}}
 	\renewcommand{\sidenotemark}[1][]{\footnotemark[#1]}
-	# TODO: make sure `fullwidth` environment doesn't break + adapt the various margin floats
+	% NOTE: This technically doesn't change the result, the math works out the same
+	% but, less overhead 
+	\RenewDocumentEnvironment{fullwidth}{}{}{}
+	% TODO:  adapt the various margin floats
 \fi
 
+% ASSORTED
+\NewDocumentCommand{\ifdraft}{m}{\ifdimgreater\overfullrule\z@{#1}\expandafter}
