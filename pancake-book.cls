@@ -1,13 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{pancake-book}[2021/09/09 Annotated book class]
 \newif\iffullwidth
-%* Footnotes to sidenotes
-\DeclareOption{sidefootnotes}{
-	\renewcommand{\footnote}[2][]{\sidenote[#1]{#2}}
-	\renewcommand{\footnotetext}[2][]{\sidenotetext[#1]{#2}}
-	\renewcommand{\footnotemark}[1][]{\sidenotemark[#1]}
-}
-
 \DeclareOption{fullwidth}{
 	\fullwidthtrue
 }
@@ -202,13 +195,9 @@
 
 \iffullwidth
 	\geometry{nomarginpar, textwidth=\dimexpr\textwidth+\marginparwidth+\marginparsep\relax}
-	\renewcommand{\marginpar}[2][]{\footnote{#2}}
-	\renewcommand{\sidenote}[2][]{\footnote[#1]{#2}}
-	\renewcommand{\sidenotemark}[1][]{\footnotemark[#1]}
 	% NOTE: This technically doesn't change the result, the math works out the same
 	% but, less overhead 
 	\RenewDocumentEnvironment{fullwidth}{}{}{}
-	% TODO:  adapt the various margin floats
 \fi
 
 % ASSORTED
