@@ -104,6 +104,33 @@
 % FULLWIDTH
 \RequirePackage{changepage}
 
+% Sectioning
+\RequirePackage{titlesec}
+\newsavebox\theCT
+\newcommand{\hsp}{\hspace{20pt}}
+
+\newcommand{\barbox}[1]{%
+	% save the content in a box
+	% why is it -2\marginparsep ? no one knows
+	% 3*20pt spacers + 3.2em bars + margin gap
+	\savebox\theCT{%
+		\parbox[m]{\dimexpr\textwidth-3.2em-60pt-2\marginparsep}{#1}%
+	}%
+	% first vertical bar
+	{\rule[-\dp\theCT]{3em}{\dimexpr\ht\theCT+\dp\theCT}}%
+	\hsp
+	\thechapter
+	\hsp
+	{\rule[-\dp\theCT]{.2em}{\dimexpr\ht\theCT+\dp\theCT}}%
+	\hsp
+	% the content
+	{\usebox{\theCT}}%
+
+}
+
+
+\titleformat{\chapter}[hang]{\Huge\bfseries\barbox}
+{}{0pt}{\Huge\bfseries}
 % PAGE HEAD/FOOT %
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
