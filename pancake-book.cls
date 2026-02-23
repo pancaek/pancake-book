@@ -110,24 +110,22 @@
 \newcommand{\hsp}{\hspace{20pt}}
 
 \newcommand{\barbox}[1]{%
-	% save the content in a box
-	% why is it -2\marginparsep ? no one knows
-	% 3*20pt spacers + 3.2em bars + margin gap
 	\savebox\theCT{%
-		\parbox[m]{\dimexpr\textwidth-3.2em-60pt-2\marginparsep}{#1}%
+		\parbox{\dimexpr\textwidth-3.2em-60pt-2\marginparsep}{#1}%
 	}%
-	% first vertical bar
-	{\rule[-\dp\theCT]{3em}{\dimexpr\ht\theCT+\dp\theCT}}%
+	%
+	\newcommand{\barheight}{2\baselineskip}
+	%
+	{\rule[\dimexpr-\dp\theCT-(\barheight-\ht\theCT-\dp\theCT)/2]{3em}{\barheight}}%
 	\hsp
 	\thechapter
 	\hsp
-	{\rule[-\dp\theCT]{.2em}{\dimexpr\ht\theCT+\dp\theCT}}%
+	% thin bar
+	{\rule[\dimexpr-\dp\theCT-(\barheight-\ht\theCT-\dp\theCT)/2]{.2em}{\barheight}}%
 	\hsp
-	% the content
-	{\usebox{\theCT}}%
-
+	%
+	\usebox{\theCT}%
 }
-
 
 \titleformat{\chapter}[hang]{\Huge\bfseries\barbox}
 {}{0pt}{\Huge\bfseries}
