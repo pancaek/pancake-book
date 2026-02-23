@@ -112,9 +112,8 @@
 \newcommand{\barbox}[1]{%
 	\settowidth{\pancake@chapterwidth}{\thechapter}
 	\savebox\theCT{%
-		\parbox{\dimexpr\textwidth-3.2em-60pt-\pancake@chapterwidth}{#1}%
+		\parbox{\dimexpr\textwidth-3.2em-60pt-\pancake@chapterwidth}{\raggedright #1}%
 	}%
-	%
 	\newcommand{\barheight}{2\baselineskip}
 	%
 	{\rule[\dimexpr-\dp\theCT-(\barheight-\ht\theCT-\dp\theCT)/2]{3em}{\barheight}}%
@@ -128,8 +127,8 @@
 	\usebox{\theCT}%
 }
 
-\titleformat{\chapter}[hang]{\Huge\bfseries\barbox}
-{}{0pt}{\Huge\bfseries}
+\titleformat{\chapter}[hang]{\normalfont\Huge\bfseries\barbox}
+{}{0pt}{}
 % PAGE HEAD/FOOT %
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
