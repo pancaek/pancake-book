@@ -109,7 +109,7 @@
 \newsavebox\theCT
 \newcommand{\hsp}{\hspace{20pt}}
 \newlength\pancake@chapterwidth
-\newcommand{\barbox}[1]{%
+\newcommand{\pancake@boxednumbered}[1]{%
 	\settowidth{\pancake@chapterwidth}{\thechapter}
 	\savebox\theCT{%
 		\parbox{\dimexpr\textwidth-3.2em-60pt-\pancake@chapterwidth}{\raggedright #1}%
@@ -127,7 +127,21 @@
 	\usebox{\theCT}%
 }
 
-\titleformat{\chapter}[hang]{\normalfont\Huge\bfseries\barbox}
+\newcommand{\pancake@boxednumberless}[1]{%
+	\savebox\theCT{%
+		\parbox{\dimexpr\textwidth-3em-20pt}{\raggedright #1}%
+	}%
+	\newcommand{\barheight}{2\baselineskip}
+	%
+	{\rule[\dimexpr-\dp\theCT-(\barheight-\ht\theCT-\dp\theCT)/2]{3em}{\barheight}}%
+	\hsp
+	%
+	\usebox{\theCT}%
+}
+
+\titleformat{\chapter}[hang]{\normalfont\Huge\bfseries\pancake@boxednumbered}
+{}{0pt}{}
+\titleformat{name=\chapter,numberless}[hang]{\normalfont\Huge\bfseries\pancake@boxednumberless}
 {}{0pt}{}
 % PAGE HEAD/FOOT %
 \renewcommand{\sectionmark}[1]{\markright{#1}}
