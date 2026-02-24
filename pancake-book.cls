@@ -112,7 +112,7 @@
 \newcommand{\pancake@boxednumbered}[1]{%
 	\settowidth{\pancake@chapterwidth}{\thechapter}
 	\savebox\theCT{%
-		\parbox{\dimexpr\textwidth-3.2em-60pt-\pancake@chapterwidth}{\raggedright #1}%
+		\parbox{\dimexpr\textwidth-3.2em-60pt-\pancake@chapterwidth}{#1}%
 	}%
 	\newcommand{\barheight}{2\baselineskip}
 	%
@@ -129,7 +129,7 @@
 
 \newcommand{\pancake@boxednumberless}[1]{%
 	\savebox\theCT{%
-		\parbox{\dimexpr\textwidth-3em-20pt}{\raggedright #1}%
+		\parbox{\dimexpr\textwidth-3em-20pt}{#1}%
 	}%
 	\newcommand{\barheight}{2\baselineskip}
 	%
