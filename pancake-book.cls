@@ -110,11 +110,11 @@
 \newcommand{\hsp}{\hspace{20pt}}
 \newlength\pancake@chapterwidth
 \newcommand{\pancake@boxednumbered}[1]{%
-	\settowidth{\pancake@chapterwidth}{\thechapter}
+	\settowidth{\pancake@chapterwidth}{\thechapter}%
 	\savebox\theCT{%
 		\parbox{\dimexpr\textwidth-3.2em-60pt-\pancake@chapterwidth}{#1}%
 	}%
-	\newcommand{\barheight}{2\baselineskip}
+	\newcommand{\barheight}{2\baselineskip}%
 	%
 	{\rule[\dimexpr-\dp\theCT-(\barheight-\ht\theCT-\dp\theCT)/2]{3em}{\barheight}}%
 	\hsp
@@ -131,18 +131,18 @@
 	\savebox\theCT{%
 		\parbox{\dimexpr\textwidth-3em-20pt}{#1}%
 	}%
-	\newcommand{\barheight}{2\baselineskip}
+	\newcommand{\barheight}{2\baselineskip}%
 	%
-	{\rule[\dimexpr-\dp\theCT-(\barheight-\ht\theCT-\dp\theCT)/2]{3em}{\barheight}}%
+	\rule[\dimexpr-\dp\theCT-(\barheight-\ht\theCT-\dp\theCT)/2]{3em}{\barheight}%
 	\hsp
 	%
 	\usebox{\theCT}%
 }
 
-\titleformat{\chapter}[hang]{\normalfont\Huge\bfseries\pancake@boxednumbered}
-{}{0pt}{}
-\titleformat{name=\chapter,numberless}[hang]{\normalfont\Huge\bfseries\pancake@boxednumberless}
-{}{0pt}{}
+\titleformat{\chapter}[hang]{\normalfont\Huge\bfseries}
+{}{0pt}{\pancake@boxednumbered}
+\titleformat{name=\chapter,numberless}[hang]{\normalfont\Huge\bfseries}
+{}{0pt}{\pancake@boxednumberless}
 % PAGE HEAD/FOOT %
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
