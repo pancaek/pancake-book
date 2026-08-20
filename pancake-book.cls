@@ -15,7 +15,7 @@
 		marginparsep=2pc,
 		marginparwidth=12pc,
 		textheight=44\baselineskip,
-		headheight=1.2\baselineskip
+		headheight=\baselineskip
 	}{geometry}
 }
 
@@ -29,7 +29,7 @@
 		marginparsep=8.2mm,
 		marginparwidth=49.4mm,
 		textheight=49\baselineskip,
-		headheight=1.2\baselineskip
+		headheight=1\baselineskip
 	}{geometry}
 }
 
