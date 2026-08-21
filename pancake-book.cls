@@ -64,6 +64,35 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessOptions\relax
 \LoadClass{book}
+
+% Preserve title, author, date
+\newcommand\pancake@author{}
+\let\pancake@author\author
+\renewcommand*{\author}[1]{%
+	\pancake@author{#1}%
+	\renewcommand*{\theauthor}{#1}%
+}
+
+\newcommand*{\theauthor}{}
+
+%Title
+\newcommand\pancake@title{}
+\let\pancake@title\title
+\renewcommand*{\title}[1]{%
+	\pancake@title{#1}%
+	\renewcommand*{\thetitle}{#1}%
+}
+\newcommand*{\thetitle}{}
+
+%Date
+\newcommand\pancake@date{}
+\let\pancake@date\date
+\renewcommand*{\date}[1]{%
+	\pancake@date{#1}%
+	\renewcommand*{\thedate}{#1}%
+}
+\newcommand*{\thedate}{}
+
 % Page geometry
 \RequirePackage{geometry}
 
@@ -106,6 +135,7 @@
 
 % Sectioning
 \RequirePackage{titlesec}
+\RequirePackage{authoraftertitle}
 \newsavebox\theCT
 \newcommand{\hsp}{\hspace{20pt}}
 \newlength\pancake@chapterwidth
@@ -144,8 +174,6 @@
 \titleformat{name=\chapter,numberless}[hang]{\normalfont\Huge\bfseries}
 {}{0pt}{\pancake@boxednumberless}
 % PAGE HEAD/FOOT %
-\renewcommand{\sectionmark}[1]{\markright{#1}}
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \pagestyle{fancy}
 
 \fancyhf{}
@@ -153,8 +181,7 @@
 \renewcommand{\headrulewidth}{.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
-\fancyhead[LE, RO]{\chaptername{} \thechapter}
-\fancyhead[RE, LO]{\nouppercase{\leftmark}}
+\fancyhead[RE, LO]{\thetitle}
 \fancyfoot[LE, RO]{\thepage}
 
 
