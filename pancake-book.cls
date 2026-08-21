@@ -90,14 +90,14 @@
 
 % Patch for accsupp on xelatex
 % via https://tex.stackexchange.com/questions/262492/xelatex-misplaces-actualtext-box
-\ifxetex
-	\def\ACCSUPP@bdc{%
-		\special{pdf:code \ACCSUPP@span BDC}%
-	}
-	\def\ACCSUPP@emc{%
-		\special{pdf:code EMC}%
-	}
-\fi
+% \ifxetex
+% 	\def\ACCSUPP@bdc{%
+% 		\special{pdf:code \ACCSUPP@span BDC}%
+% 	}
+% 	\def\ACCSUPP@emc{%
+% 		\special{pdf:code EMC}%
+% 	}
+% \fi
 
 \IfPackageLoadedTF{fontspec}{}{\RequirePackage{letterspace}}
 
@@ -217,10 +217,10 @@
 % For reasons that are a mystery to me, using direct floating point math breaks stuff, so don't try that
 
 \NewDocumentCommand{\spacedtext}{O{20} m}{
-	\BeginAccSupp{ActualText=#2}%
+	% \BeginAccSupp{ActualText=#2}%
 	\IfPackageLoadedTF{fontspec}{%
 		\addfontfeature{LetterSpace=\the\numexpr#1/10\relax}#2}{\textls[#1]{#2}}%
-	\EndAccSupp{}
+	% \EndAccSupp{}
 }
 
 \newcommand{\smallcaps}[1]{{\scshape\spacedtext[50]{#1}}}
