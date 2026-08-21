@@ -65,33 +65,32 @@
 \ProcessOptions\relax
 \LoadClass{book}
 
-% Preserve title, author, date
 \newcommand\pancake@author{}
 \let\pancake@author\author
 \renewcommand*{\author}[1]{%
 	\pancake@author{#1}%
-	\renewcommand*{\theauthor}{#1}%
+	\renewcommand*{\plainauthor}{#1}%
 }
 
-\newcommand*{\theauthor}{}
+\newcommand*{\plainauthor}{}
 
 %Title
 \newcommand\pancake@title{}
 \let\pancake@title\title
 \renewcommand*{\title}[1]{%
 	\pancake@title{#1}%
-	\renewcommand*{\thetitle}{#1}%
+	\renewcommand*{\plaintitle}{#1}%
 }
-\newcommand*{\thetitle}{}
+\newcommand*{\plaintitle}{}
 
 %Date
 \newcommand\pancake@date{}
 \let\pancake@date\date
 \renewcommand*{\date}[1]{%
 	\pancake@date{#1}%
-	\renewcommand*{\thedate}{#1}%
+	\renewcommand*{\plaindate}{#1}%
 }
-\newcommand*{\thedate}{}
+\newcommand*{\plaindate}{}
 
 % Page geometry
 \RequirePackage{geometry}
@@ -135,7 +134,6 @@
 
 % Sectioning
 \RequirePackage{titlesec}
-\RequirePackage{authoraftertitle}
 \newsavebox\theCT
 \newcommand{\hsp}{\hspace{20pt}}
 \newlength\pancake@chapterwidth
@@ -177,19 +175,17 @@
 \pagestyle{fancy}
 
 \fancyhf{}
-\fancyheadoffset{0cm}
-\renewcommand{\headrulewidth}{.4pt}
+\fancyhfoffset[LE,RO]{\dimexpr\marginparwidth+\marginparsep}
+\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-
-\fancyhead[RE, LO]{\thetitle}
-\fancyfoot[LE, RO]{\thepage}
-
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\fancyhead[LE]{\thepage\enspace\plaintitle}
+\fancyhead[RO]{\leftmark\enspace\thepage}
 
 \fancypagestyle{plain}{
 	\fancyhf{}
 	\renewcommand{\headrulewidth}{0pt}
 	\renewcommand{\footrulewidth}{0pt}
-	\fancyfoot[LE, RO]{\thepage}
 }
 
 % MARGINALIA %
@@ -258,6 +254,7 @@
 % Basically, we subtract all space taken up by margin notes
 % we need `changepage` so this will work mid-page
 \NewDocumentEnvironment{fullwidth}{}{\begin{adjustwidth*}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}{\end{adjustwidth*}}
+
 
 \iffullwidth
 	\geometry{nomarginpar, textwidth=\dimexpr\textwidth+\marginparwidth+\marginparsep\relax}
