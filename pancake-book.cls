@@ -57,7 +57,7 @@
 		marginparsep=2pc,
 		marginparwidth=12pc,
 		textheight=56\baselineskip,
-		headheight=1.2\baselineskip
+		headheight=\baselineskip
 	}{geometry}
 }
 
